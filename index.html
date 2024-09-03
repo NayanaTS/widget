@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Responsive Layout</title>
+    <link rel="stylesheet" href="widget.css">
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        /* Add this CSS to widget.css or within a <style> tag */
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: #f0f2f5;
+            color: #333;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .widget {
+            background-color: #ffffff;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            padding: 20px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .tabs {
+            display: flex;
+            border-bottom: 2px solid #007bff;
+            margin-bottom: 20px;
+        }
+
+        .button-19 {
+            flex: 1;
+            padding: 10px;
+            border: none;
+            background-color: #007bff;
+            color: white;
+            cursor: pointer;
+            margin: 0 5px;
+            border-radius: 5px;
+            font-size: 16px;
+            transition: background-color 0.3s;
+        }
+
+        .button-19.active, .button-19:hover {
+            background-color: #0056b3;
+        }
+
+        .tab-content {
+            display: none;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        @media (max-width: 768px) {
+            .tabs {
+                flex-direction: column;
+            }
+
+            .button-19 {
+                margin: 5px 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="widget">
+            <div class="tabs">
+                <button class="button-19" onclick="showTab('about')">About Chess</button>
+                <button class="button-19" onclick="showTab('experiences')">Experiences</button>
+                <button class="button-19" onclick="showTab('recommended')">Recommended</button>
+            </div>
+            <div id="about" class="tab-content">
+                <h2>About Chess</h2>
+                <p>Chess is a classic two-player strategy board game with a deep history and rich cultural significance...</p>
+            </div>
+            <div id="experiences" class="tab-content">
+                <h2>Experiences</h2>
+                <p>Content for Experiences tab.</p>
+            </div>
+            <div id="recommended" class="tab-content">
+                <h2>Recommended</h2>
+                <p>If you're looking for recommendations related to chess, here are a few areas you might find interesting:</p>
+                <ul>
+                    <li>Play Magnus: Offers training and games against different levels of AI, including Magnus Carlsen.</li>
+                    <li>Shredder Chess: Known for its powerful chess engine and training features.</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <script>
+        function showTab(tabId) {
+            document.querySelectorAll('.tab-content').forEach(tab => tab.classList.remove('active'));
+            document.querySelectorAll('.button-19').forEach(button => button.classList.remove('active'));
+            document.getElementById(tabId).classList.add('active');
+            document.querySelector(`.button-19[onclick="showTab('${tabId}')"]`).classList.add('active');
+        }
+    </script>
+    <br>
+    <div>
+      <h1 class="gallery-title">Gallery</h1>
+    <input type="file" id="file-input" accept="image/*" multiple style="display: none;">
+    <button id="add-images" class="upload-btn" onclick="document.getElementById('file-input').click()">Add Images</button>
+
+    <!-- Container for first three images -->
+    <div class="image-container" id="image-container">
+        <img src="pic1.jpeg" alt="Default Image 1">
+        <img src="pic2.png" alt="Default Image 2">
+        <img src="pic3.jpeg" alt="Default Image 3">
+    </div>
+
+    <!-- Slideshow for additional images -->
+    <div class="slideshow-container" id="slideshow-container">
+        <button class="arrow left" onclick="prevSlide()">&#10094;</button>
+        <div class="slides" id="slides"></div>
+        <button class="arrow right" onclick="nextSlide()">&#10095;</button>
+    </div>
+
+    <script src="script.js"></script>
+    </div>
+</body>
+</html>
